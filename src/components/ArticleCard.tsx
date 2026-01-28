@@ -1,21 +1,25 @@
+import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import { Clock, BookOpen, ArrowUpRight } from "lucide-react";
 
-interface ArticleCardProps {
-  id: number;
+export interface ArticleCardProps {
+  id: string | number;
   title: string;
   excerpt: string;
   category: string;
+  categoryLabel?: string;
   readTime: string;
   image: string;
-  index: number;
+  index?: number;
+  date?: string;
 }
 
-const ArticleCard = ({ title, excerpt, category, readTime, image, index }: ArticleCardProps) => {
+const ArticleCard = ({ id, title, excerpt, category, categoryLabel, readTime, image, index = 0 }: ArticleCardProps) => {
   return (
-    <motion.article
-      initial={{ opacity: 0, y: 30 }}
-      whileInView={{ opacity: 1, y: 0 }}
+    <Link to={`/article/${id}`}>
+      <motion.article
+        initial={{ opacity: 0, y: 30 }}
+        whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       whileHover={{ y: -5 }}
@@ -33,7 +37,7 @@ const ArticleCard = ({ title, excerpt, category, readTime, image, index }: Artic
         {/* Category Badge */}
         <div className="absolute top-4 left-4">
           <span className="px-3 py-1 text-xs font-semibold rounded-full bg-primary/90 text-primary-foreground">
-            {category}
+            {categoryLabel || category}
           </span>
         </div>
 
@@ -70,8 +74,9 @@ const ArticleCard = ({ title, excerpt, category, readTime, image, index }: Artic
       </div>
 
       {/* Bottom Glow Effect */}
-      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-    </motion.article>
+        <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+      </motion.article>
+    </Link>
   );
 };
 
