@@ -1,20 +1,9 @@
 import { motion } from "framer-motion";
 import { ChevronDown, Zap, Brain, Activity } from "lucide-react";
-import heroBg from "@/assets/hero-bg.jpg";
 
 const Hero = () => {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image with Overlay */}
-      <div className="absolute inset-0">
-        <img
-          src={heroBg}
-          alt="Abstract molecular visualization"
-          className="w-full h-full object-cover opacity-40"
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/80 via-background/60 to-background" />
-      </div>
-
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
       {/* Content */}
       <div className="relative z-10 container px-4 pt-20 pb-32">
         <motion.div
